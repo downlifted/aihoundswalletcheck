@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Check Ethereum Wallet</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(function() {
+			$('form').submit(function(event) {
+				event.preventDefault(); // prevent the form from submitting
+				var wallet = $('#wallet').val(); // get the wallet address from the input
+				var ogList = [/* your OG list goes here */];
+				var wlList = [/* your WL list goes here */];
+				var list = null;
+				if (ogList.includes(wallet)) {
+					list = 'OG';
+				} else if (wlList.includes(wallet)) {
+					list = 'WL';
+				}
+				if (list) {
+					$('#result').text(wallet + ' is on the ' + list + ' list.');
+				} else {
+					$('#result').text(wallet + ' is not on any list.');
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>Check if your Ethereum wallet is on a list</h1>
+	<form>
+		<label for="wallet">Enter your Ethereum wallet address:</label><br>
+		<input type="text" id="wallet" name="wallet"><br>
+		<input type="submit" value="Check">
+	</form>
+	<div id="result"></div>
+</body>
+</html>
